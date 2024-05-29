@@ -1,8 +1,7 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <h1>Contacts page</h1>
 </template>
