@@ -1,14 +1,7 @@
+import { Model } from "sequelize"
+import { actions } from "~/backend/store"
 import { T_User } from "~/types"
 
-export default defineEventHandler<T_User[]>((event) => {
-    return [
-        {
-            id:"1",
-            name: "Марат"
-        },
-        {
-            id:"2",
-            name: "_ananimus"
-        }
-    ]
-  })
+export default defineEventHandler<Promise<Model<T_User, T_User>[]>>((event) => {
+    return actions.fetchUsers()
+})

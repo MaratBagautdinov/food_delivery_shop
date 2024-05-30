@@ -1,38 +1,53 @@
 export type T_Product = {
-    id: string,
-    name: string,
-    slug: string,
-    catalog_id: string,
+    id: number
+    name: string
+    slug: string
+    catalog_id: number
     checked: boolean
     variants: T_ProductVariant[]
+    createdAt?: Date
+    updatedAt?: Date
 }
 export type T_ProductVariant = {
-    id: string
-    name: string,
-    price: number,
+    id: number
+    name: string
+    price: number
     photo: string
     checked: boolean
+    createdAt?: Date
+    updatedAt?: Date
 }
 export type T_Subdivision = {
-    id: string,
-    name: string,
+    id: number
+    name: string
     slug: string
+    createdAt?: Date
+    updatedAt?: Date
 }
 export type T_User = {
-    id: string,
-    name: string,
+    id: number
+    name: string
+    createdAt?: Date
+    updatedAt?: Date
 }
 export type T_Order = {
-    id: string,
-    date: string,
-    user: string,
-    items_ids: T_Product['id'][],
-    items: T_Order_Item[],
-    sum: number,
-    type: 'delivery' | 'pickup',
-    addres: T_Addres | 'pickup'
+    id: number
+    status_id: T_OrderStatus['id']
+    user: string
+    items_ids: T_Product['id'][]
+    items: T_Order_Item[]
+    sum: number
+    type: 'delivery' | 'pickup'
+    addres: T_Addres
+    createdAt?: Date
+    updatedAt?: Date
 }
-
+export type T_OrderStatus = {
+    id: number
+    label: string
+    value: string
+    color?: string
+}
 export type T_Order_Item = {
     product_id: T_Product['id']
     product_option: T_ProductVariant['id']
@@ -42,11 +57,11 @@ export type T_Order_Item = {
 }
 
 export type T_Addres = {
-    city: string,
-    street: string,
-    house: string,
-    entrance: string,
-    floor: string,
+    city: string
+    street: string
+    house: string
+    entrance: string
+    floor: string
     room: string
 }
 export type T_Link = {

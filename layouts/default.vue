@@ -19,6 +19,10 @@ const menuNavTop: T_Link[] = [
     href: "/contacts",
     label: "Контакты"
   },
+  {
+    href: "/profile",
+    label: "Профиль"
+  },
 ]
 
 </script>
