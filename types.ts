@@ -67,4 +67,5 @@ export type T_Addres = {
 export type T_Link = {
     label: string
     href: string
+    icon?: string
 }

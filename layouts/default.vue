@@ -1,41 +1,53 @@
 <script setup lang="ts">
-import type { T_Link } from '~/types';
-
-
-const menuNavTop: T_Link[] = [
-  {
-    href: "/",
-    label: "Гланая"
-  },
-  {
-    href: "/catalog",
-    label: "Меню"
-  },
-  {
-    href: "/profile/orders",
-    label: "Заказы"
-  },
-  {
-    href: "/contacts",
-    label: "Контакты"
-  },
-  {
-    href: "/profile",
-    label: "Профиль"
-  },
-]
 
 </script>
 
 <template>
-  <div>
-    <nav>
-      <ul>
-        <li v-for="link in menuNavTop">
-          <NuxtLink :to="link.href">{{ link.label }}</NuxtLink>
-        </li>
-      </ul>
-    </nav>
-    <slot />
+  <div class="site-wrapper">
+    <WidgetsHeader />
+    <main class="sections-wrapper">
+      <slot />
+    </main>
+    <WidgetsFooter />
   </div>
 </template>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.max-width {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.section,
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 50px;
+}
+</style>

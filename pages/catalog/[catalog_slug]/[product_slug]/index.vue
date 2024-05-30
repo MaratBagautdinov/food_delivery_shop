@@ -14,22 +14,26 @@ if (!route.params.variant) {
 </script>
 
 <template>
-    <h1>Product page</h1>
-    <div v-if="product" class="product">
-        <h2>Name: {{ product.name }}</h2>
-        <div class="offer">
-            <div class="varints" v-if="product.variants.length > 1">
-                <div v-for="variant in product.variants">
-                    <NuxtLink :to="{ path: product.slug, query: { variant: variant.id } }">{{ variant.name }} {{
-                        variant.price }} руб</NuxtLink>
+    <div class="section">
+        <div class="section-body max-width">
+            <h1>Product page</h1>
+            <div v-if="product" class="product">
+                <h2>Name: {{ product.name }}</h2>
+                <div class="offer">
+                    <div class="varints" v-if="product.variants.length > 1">
+                        <div v-for="variant in product.variants">
+                            <NuxtLink :to="{ path: product.slug, query: { variant: variant.id } }">{{ variant.name }} {{
+                                variant.price }} руб</NuxtLink>
+                        </div>
+                    </div>
+                    <div class="price" v-else>
+                        {{ product.variants[0].price }} руб
+                    </div>
                 </div>
             </div>
-            <div class="price" v-else>
-                {{ product.variants[0].price }} руб
+            <div v-else>
+                <pre>{{ error }}</pre>
             </div>
         </div>
-    </div>
-    <div v-else>
-        <pre>{{ error }}</pre>
     </div>
 </template>
