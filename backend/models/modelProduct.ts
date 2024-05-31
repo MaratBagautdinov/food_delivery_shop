@@ -25,10 +25,7 @@ export default sequelize.define<Model<T_Product>>('Products', {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
-    variants: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        allowNull: false
-    },
+    variants: DataTypes.TEXT,
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

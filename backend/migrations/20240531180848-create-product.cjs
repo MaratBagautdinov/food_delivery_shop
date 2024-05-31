@@ -25,10 +25,7 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false
       },
-      variants: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
-        allowNull: false
-      },
+      variants: Sequelize.TEXT,
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

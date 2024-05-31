@@ -11,6 +11,8 @@ const { data: product, error, status } = await useFetch<T_Product>(`/api/product
 if (!route.params.variant) {
     router.push({ path: product?.value?.slug, query: { variant: product?.value?.variants[0].id } })
 }
+console.log(product.value);
+
 </script>
 
 <template>
