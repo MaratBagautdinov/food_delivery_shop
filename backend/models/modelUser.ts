@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize';
-import type { T_Subdivision } from '~/types';
+import type { T_User } from '~/types';
 
-export default sequelize.define<Model<T_Subdivision>>('User', {
+export default sequelize.define<Model<T_User>>('Users', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -13,8 +13,12 @@ export default sequelize.define<Model<T_Subdivision>>('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    slug: {
-        type: DataTypes.STRING,
-        allowNull: false
-    }
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
 });

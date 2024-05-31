@@ -11,13 +11,14 @@ export type T_Product = {
 export type T_ProductVariant = {
     id: number
     name: string
+    slug: string
     price: number
     photo: string
     checked: boolean
     createdAt?: Date
     updatedAt?: Date
 }
-export type T_Subdivision = {
+export type T_Catalog = {
     id: number
     name: string
     slug: string
@@ -33,7 +34,7 @@ export type T_User = {
 export type T_Order = {
     id: number
     status_id: T_OrderStatus['id']
-    user: string
+    user_id: T_User['id']
     items_ids: T_Product['id'][]
     items: T_Order_Item[]
     sum: number

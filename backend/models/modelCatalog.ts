@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize';
-import type { T_Product } from '~/types';
+import type { T_Catalog } from '~/types';
 
-export default sequelize.define<Model<T_Product>>('User', {
+export default sequelize.define<Model<T_Catalog>>('Catalogs', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,16 +17,12 @@ export default sequelize.define<Model<T_Product>>('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    catalog_id: {
-        type: DataTypes.STRING,
-        allowNull: false
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
     },
-    checked: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
     },
-    variants: {
-        type: DataTypes.ARRAY,
-        allowNull: false
-    }
 });

@@ -1,40 +1,40 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize';
-import type { T_Order } from '~/types';
+import type { T_Product } from '~/types';
 
-export default sequelize.define<Model<T_Order>>('User', {
+export default sequelize.define<Model<T_Product>>('Products', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    status_id: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    user: {
+    slug: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    items_ids: {
-        type: DataTypes.ARRAY,
-        allowNull: false
-    },
-    items: {
-        type: DataTypes.ARRAY,
-        allowNull: false
-    },
-    sum: {
-        type: DataTypes.NUMBER,
-        allowNull: false
-    },
-    type: {
+    catalog_id: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    addres: {
-        type: DataTypes.STRING,
+    checked: {
+        type: DataTypes.BOOLEAN,
         allowNull: false
-    }
+    },
+    variants: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: false
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
 });

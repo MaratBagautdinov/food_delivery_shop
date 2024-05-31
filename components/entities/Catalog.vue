@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { T_Subdivision } from '~/types';
+import type { T_Catalog } from '~/types';
 
-defineProps<{ subdivisions: T_Subdivision[] }>()
+defineProps<{ catalogs: T_Catalog[] }>()
 </script>
 
 <template>
     <div class="catalog-list">
-        <div v-for="sub in subdivisions">
+        <div v-for="sub in catalogs">
             <NuxtLink :to="`/catalog/${sub.slug}`">{{ sub.name }}</NuxtLink>
         </div>
     </div>

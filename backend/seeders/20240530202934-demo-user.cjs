@@ -6,19 +6,15 @@ module.exports = {
     const bulkUsers = [
       {
         name: 'Марат',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
       {
         name: '_ananimus',
-        createdAt: new Date(),
-        updatedAt: new Date(),
       },
     ]
     await queryInterface.bulkInsert('Users', bulkUsers);
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.bulkDelete('Users', null, {});
   }
 };
