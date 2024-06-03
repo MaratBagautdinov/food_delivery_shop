@@ -1,3 +1,4 @@
+
 export type T_Product = {
     id: number
     name: string
@@ -5,6 +6,17 @@ export type T_Product = {
     catalog_id: number
     checked: boolean
     variants: T_ProductVariant[]
+    createdAt?: Date
+    updatedAt?: Date
+}
+
+export type T_ProductDB = {
+    id: number
+    name: string
+    slug: string
+    catalog_id: number
+    checked: boolean
+    variants: string
     createdAt?: Date
     updatedAt?: Date
 }
@@ -69,4 +81,8 @@ export type T_Link = {
     label: string
     href: string
     icon?: string
+}
+export type T_ViewType<value> = {
+    label: string
+    value: value
 }

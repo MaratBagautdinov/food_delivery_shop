@@ -9,7 +9,7 @@ const { data: product, error, status } = await useFetch<T_Product>(`/api/product
     },
 })
 if (!route.params.variant) {
-    router.push({ path: product?.value?.slug, query: { variant: product?.value?.variants[0].id } })
+    router.push({ path: product?.value?.slug, query: { ...route.query, variant: product?.value?.variants[0].id } })
 }
 console.log(product.value);
 
@@ -19,20 +19,7 @@ console.log(product.value);
     <div class="section">
         <div class="section-body max-width">
             <h1>Product page</h1>
-            <div v-if="product" class="product">
-                <h2>Name: {{ product.name }}</h2>
-                <div class="offer">
-                    <div class="varints" v-if="product.variants.length > 1">
-                        <div v-for="variant in product.variants">
-                            <NuxtLink :to="{ path: product.slug, query: { variant: variant.id } }">{{ variant.name }} {{
-                                variant.price }} руб</NuxtLink>
-                        </div>
-                    </div>
-                    <div class="price" v-else>
-                        {{ product.variants[0].price }} руб
-                    </div>
-                </div>
-            </div>
+            <EntitiesProductFull v-if="product" :product />
             <div v-else>
                 <pre>{{ error }}</pre>
             </div>

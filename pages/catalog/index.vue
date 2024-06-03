@@ -8,7 +8,7 @@ const { data: catalogs } = await useFetch<T_Catalog[]>('/api/catalog')
   <div class="section">
     <div class="section-body max-width">
       <h1>Catalog page</h1>
-      <EntitiesCatalogGrid :catalogs v-if="catalogs" />
+      <WidgetsCatalogsGrid :catalogs v-if="catalogs" />
       <span class="emptyList" v-else>Каталог пуст</span>
     </div>
   </div>

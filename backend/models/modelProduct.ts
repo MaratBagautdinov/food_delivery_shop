@@ -1,8 +1,8 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../sequelize';
-import type { T_Product } from '~/types';
+import type { T_ProductDB } from '~/types';
 
-export default sequelize.define<Model<T_Product>>('Products', {
+export default sequelize.define<Model<T_ProductDB>>('Products', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
