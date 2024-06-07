@@ -5,4 +5,10 @@ export default defineNuxtConfig({
   fileStorage: {
     mount: `${process.env.ROOT_PUBLIC_PATH}${process.env.STORAGE}`
   },
+  ssr: false,
+  content: {
+    experimental: {
+      clientDB: true
+    }
+  }
 })

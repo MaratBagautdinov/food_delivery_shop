@@ -33,7 +33,7 @@ export default sequelize.define<Model<T_Order>>('Orders', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    addres: {
+    address: {
         type: DataTypes.JSON,
         allowNull: false
     },
