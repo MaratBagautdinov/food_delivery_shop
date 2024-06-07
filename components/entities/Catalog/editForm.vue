@@ -28,7 +28,7 @@ const submitHandler = async () => {
             <span>Slug</span>
             <input type="text" name="slug" id="f_slug" v-model="catalogFields.slug">
         </label>
-        <SharedInputFile name="f_photo" v-model:photo="catalogFields.photo" entity="catalogs" />
+        <SharedInputFile name="f_photo" v-model:photo="catalogFields.photo" />
         <input type="submit" class="submut" value="submit" />
     </form>
 </template>

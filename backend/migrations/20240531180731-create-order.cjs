@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      addres: {
+      address: {
         type: Sequelize.JSON,
         allowNull: false,
       },
@@ -50,7 +50,7 @@ module.exports = {
     })
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Orders');
   }
 };

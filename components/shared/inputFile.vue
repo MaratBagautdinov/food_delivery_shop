@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const props = defineProps<{
     name: string
-    entity: "products" | "catalogs"
 }>()
 const photo = defineModel<string>('photo')
 const { handleFileInput, files } = useFileStorage()
@@ -12,19 +11,17 @@ watch(files.value, async () => {
         console.error("FILE NOT UPLOAD");
         return
     }
-    const filePath = await $fetch<string>(`/api/files/upload`, {
+  photo.value = await $fetch<string>(`/api/files/upload`, {
         method: 'POST',
         body: {
-            file: newFile,
-            entity: props.entity
+            file: newFile
         }
     })
-    photo.value = filePath
 })
 </script>
 <template>
     <label :for="name">
-        <img class="file_img" v-if="photo" :src="photo">
+        <img class="file_img" v-if="photo" :src="photo" :alt="name">
         <input type="file" :name="name" :id="name" @input="handleFileInput" accept="image/png, image/gif, image/jpeg">
     </label>
 </template>

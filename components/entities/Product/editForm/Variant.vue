@@ -16,7 +16,7 @@ const props = defineProps<{
             <input type="text" :name="`f_variants[${variant.id}][price]`" :id="`f_variants[${variant.id}][price]`"
                 v-model="variant.price">
         </label>
-        <SharedInputFile :name="`f_variants[${variant.id}][photo]`" v-model:photo="variant.photo" entity="products" />
+        <SharedInputFile :name="`f_variants[${variant.id}][photo]`" v-model:photo="variant.photo" />
         <label for="f_variants[][checked]">
             Включён
             <input type="checkbox" :checked="variant.checked" :name="`f_variants[${variant.id}][checked]`"

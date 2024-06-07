@@ -52,7 +52,7 @@ export type T_Order = {
     items: T_Order_Item[]
     sum: number
     type: 'delivery' | 'pickup'
-    addres: T_Addres
+    address: T_Addres
     createdAt?: Date
     updatedAt?: Date
 }
