@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "postgres",
-    "host": "127.127.126.49",
+    "username": "default",
+    "password": "vk4jFXo1wBWK",
+    "database": "verceldb",
+    "host": "ep-green-heart-a4jmt5ia-pooler.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "postgres",
-    "database": "postgres",
-    "host": "127.127.126.49",
+    "username": "default",
+    "password": "vk4jFXo1wBWK",
+    "database": "verceldb",
+    "host": "ep-green-heart-a4jmt5ia-pooler.us-east-1.aws.neon.tech",
     "dialect": "postgres"
   }
 }
