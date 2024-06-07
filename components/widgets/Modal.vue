@@ -1,13 +1,14 @@
-<script setup lang="ts">
-import type { T_Product } from '~/types';
-
+<script lang="ts" setup>
 const route = useRoute()
 const router = useRouter()
-const { edit, id, entityname } = route.query
+const {
+    action,
+    id,
+    entityname
+} = route.query
 defineProps<{
     modalHead: string
 }>()
-const closeLink = route.path
 </script>
 
 <template>
@@ -15,8 +16,10 @@ const closeLink = route.path
         <div class="modal">
             <div class="modal-body-wrap">
                 <div class="modal-head">
-                    <div class="head-text">Редактировать {{ modalHead }}</div>
-                    <NuxtLink class="head-close" :to="closeLink">X</NuxtLink>
+                    <div class="head-text">{{ action && action === 'edit' ? "Редактировать" : "Создать" }} {{ modalHead
+                        }}</div>
+                    <NuxtLink class="head-close" :to="{ path: route.path, query: { variant: route.query.variant } }">X
+                    </NuxtLink>
                 </div>
                 <div id="modal-body">
                     <slot />

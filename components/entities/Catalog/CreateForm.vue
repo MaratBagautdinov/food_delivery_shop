@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import type { T_Catalog, T_Product } from '~/types';
 
-const props = defineProps<{ catalog: T_Catalog }>()
+const props = defineProps<{ catalogParent: T_Catalog }>()
 
-const catalogFields = ref<T_Catalog>(props.catalog)
+const catalogFields = ref<Omit<T_Catalog, 'id'>>({
+    name: '',
+    photo: '',
+    slug: '',
+})
 const route = useRoute()
 const router = useRouter()
 

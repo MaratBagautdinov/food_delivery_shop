@@ -34,6 +34,7 @@ export type T_Catalog = {
     id: number
     name: string
     slug: string
+    photo: string
     createdAt?: Date
     updatedAt?: Date
 }
@@ -85,4 +86,8 @@ export type T_Link = {
 export type T_ViewType<value> = {
     label: string
     value: value
+}
+export interface File {
+    name: string
+    content: string
 }

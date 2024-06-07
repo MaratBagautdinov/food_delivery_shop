@@ -17,6 +17,10 @@ export default sequelize.define<Model<T_Catalog>>('Catalogs', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    photo: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

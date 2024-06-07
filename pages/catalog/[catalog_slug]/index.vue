@@ -13,7 +13,7 @@ const { data: catalog } = await useFetch<T_Catalog>(`/api/catalog/${route.params
 const { data: products } = await useFetch<T_Product[]>(`/api/product?catalog_id=${catalog.value?.id}`, {
   onRequestError({ request, options, error }) {
     router.push({ path: '/catalog' })
-  },
+  }
 })
 const viewTypeTemplates = {
   WidgetsProductsGrid,
@@ -30,18 +30,22 @@ const viewTypes: T_ViewType<keyof typeof viewTypeTemplates>[] = [
   },
 ]
 const viewType = ref<keyof typeof viewTypeTemplates>('WidgetsProductsGrid')
+
 </script>
 
 <template>
   <div class="section">
     <div class="section-body max-width" v-if="catalog">
-      <SharedEditButton :link="route.path" />
-      <WidgetsModal :modal-head="catalog.name" v-if="route.query.edit">
-        <EntitiesCatalogEditForm :catalog />
-      </WidgetsModal>
       <h1>Catalog sub page: {{ catalog.name }}</h1>
+      <img class="catalog-full-img" :src="catalog.photo ?? '/entities/products/default.png'" alt="">
       <WidgetsFilter v-model:viewTypeModel="viewType" :viewTypes />
-      <component :is="viewTypeTemplates[viewType]" :products v-if="products" />
+      <EntitiesCatalogFull :catalog :products="products ?? []" :viewType />
     </div>
   </div>
 </template>
+
+<style>
+.catalog-full-img {
+  width: 200px;
+}
+</style>

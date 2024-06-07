@@ -7,11 +7,13 @@ module.exports = {
       {
         id: "1",
         name: "Бургер",
+        photo: "",
         slug: "burgers"
       },
       {
         id: "2",
         name: "Пицца",
+        photo: "",
         slug: "pizza"
       }
     ]

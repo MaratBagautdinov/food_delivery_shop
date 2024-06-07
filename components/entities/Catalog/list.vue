@@ -1,14 +1,13 @@
 <script lang="ts" setup>
 import type { T_Catalog } from '~/types';
 
-defineProps<{ catalogs: T_Catalog[] }>()
+defineProps<{ catalog: T_Catalog }>()
 </script>
 
 <template>
-    <div class="catalog-list">
-        <div class="catalog-item" v-for="sub in catalogs">
-            <NuxtLink :to="`/catalog/${sub.slug}`">{{ sub.name }}</NuxtLink>
-        </div>
+    <div class="catalog-item">
+        list
+        <NuxtLink :to="`/catalog/${catalog.slug}`">{{ catalog.name }}</NuxtLink>
     </div>
 </template>
 

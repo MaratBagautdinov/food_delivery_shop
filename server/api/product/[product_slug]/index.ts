@@ -1,8 +1,8 @@
 import { Model } from "sequelize"
-import { T_Product } from "~/types"
+import { T_Product, T_ProductDB } from "~/types"
 import Product from "~/backend/models/modelProduct"
 
-export default defineEventHandler<Promise<Model<T_Product, T_Product> | null> | null>((event) => {
+export default defineEventHandler<Promise<Model<T_ProductDB, T_ProductDB> | null> | null>((event) => {
     const product_slug = event.context.params?.product_slug
     if (!product_slug) return null
     let product = Product.findOne({

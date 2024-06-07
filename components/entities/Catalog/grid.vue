@@ -1,24 +1,20 @@
 <script lang="ts" setup>
 import type { T_Catalog } from '~/types';
 
-defineProps<{ catalogs: T_Catalog[] }>()
+defineProps<{ catalog: T_Catalog }>()
 </script>
 
 <template>
-    <div class="catalog-list">
-        <div class="catalog-item" v-for="sub in catalogs">
-            <NuxtLink :to="`/catalog/${sub.slug}`">{{ sub.name }}</NuxtLink>
-        </div>
+    <div class="catalog-item">
+        <SharedEditButton :link="`/catalog/${catalog.slug}`" />
+        <NuxtLink :to="`/catalog/${catalog.slug}`">
+            <span class="catalog-photo"><img :src="catalog.photo ?? '/entities/products/default.png'" alt=""></span>
+            <span class="catalog-name">{{ catalog.name }}</span>
+        </NuxtLink>
     </div>
 </template>
 
 <style>
-.catalog-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-}
-
 .catalog-item {
     padding: 10px;
     border-radius: 10px;

@@ -6,9 +6,7 @@ defineProps<{ catalogs: T_Catalog[] }>()
 
 <template>
     <div class="catalog-list">
-        <div class="catalog-item" v-for="sub in catalogs">
-            <NuxtLink :to="`/catalog/${sub.slug}`">{{ sub.name }}</NuxtLink>
-        </div>
+        <EntitiesCatalogList v-for="catalog in catalogs" :catalog :key="catalog.id" />
     </div>
 </template>
 

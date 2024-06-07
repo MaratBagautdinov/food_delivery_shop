@@ -6,7 +6,7 @@ defineProps<{ products: T_Product[] }>()
 
 <template>
     <div class="products-list products-list--list">
-        <EntitiesProductList v-for="product in products" :product />
+        <EntitiesProductList v-for="product in products" :product :key="product.id" />
     </div>
 </template>
 
