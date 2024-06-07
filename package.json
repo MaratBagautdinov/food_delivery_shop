@@ -17,10 +17,10 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "nuxt-file-storage": "^0.2.5"
   },
   "devDependencies": {
-    "nuxt-file-storage": "^0.2.5",
     "sequelize-cli": "^6.6.2"
   }
 }
