@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-
+import pg from 'pg'
 export default new Sequelize(
     process.env.POSTGRES_DATABASE,
     process.env.POSTGRES_USER,
@@ -14,5 +14,6 @@ export default new Sequelize(
                 rejectUnauthorized: false
             }
         },
+        dialectModule: pg
     },
 );
