@@ -7,6 +7,7 @@ defineProps<{ product: T_Product }>()
 
 <template>
     <div class="product-item product-item--grid">
+      <pre>{{product.catalog }}</pre>
         <SharedEditButton :link="`/catalog/${route.params.catalog_slug}/${product.slug}`" />
         <NuxtLink :to="`/catalog/${route.params.catalog_slug}/${product.slug}`">
             <img class="product-img"
