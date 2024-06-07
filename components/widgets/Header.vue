@@ -1,31 +1,7 @@
 <script lang="ts" setup>
-import type { T_Link } from '~/types';
+import { menuNavTop, menuUserActions } from '~/content';
 
 
-const menuNavTop: T_Link[] = [
-    {
-        href: "/",
-        label: "Гланая"
-    },
-    {
-        href: "/catalog",
-        label: "Меню"
-    },
-    {
-        href: "/contacts",
-        label: "Контакты"
-    },
-]
-const menuUserActions: T_Link[] = [
-    {
-        href: "/profile",
-        label: "Профиль"
-    },
-    {
-        href: "/profile/orders",
-        label: "Заказы"
-    },
-]
 
 </script>
 
@@ -37,16 +13,16 @@ const menuUserActions: T_Link[] = [
             </div>
             <div class="header-nav-wrap">
                 <nav>
-                    <ul>
-                        <li v-for="link in menuNavTop">
+                    <ul class="menu-list">
+                        <li class="menu-item" v-for="link in menuNavTop">
                             <NuxtLink :to="link.href">{{ link.label }}</NuxtLink>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="header-user-actions-wrap">
-                <ul>
-                    <li v-for="link in menuUserActions">
+                <ul class="menu-list">
+                    <li class="menu-item" v-for="link in menuUserActions">
                         <NuxtLink :to="link.href">
                             <img v-if="link.icon" :src="link.icon" :alt="link.label">
                             <span v-else>{{ link.label }}</span>
@@ -58,9 +34,14 @@ const menuUserActions: T_Link[] = [
     </header>
 </template>
 <style>
+header {
+    background: #ffcc01;
+}
+
 .header-body {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-nav-wrap ul {
@@ -76,10 +57,22 @@ const menuUserActions: T_Link[] = [
 }
 
 .header-logo-wrap {
-    width: 100px;
+    width: 80px;
 }
 
 img {
     width: inherit;
+}
+
+.menu-item a {
+    background-color: rgb(240, 241, 217);
+    border-radius: 5px;
+    padding: 6px 16px;
+    font-size: 18px;
+    transition: .2s
+}
+
+.menu-item:hover a {
+    background-color: rgb(255, 255, 255)
 }
 </style>

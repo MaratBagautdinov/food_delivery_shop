@@ -1,11 +1,25 @@
 <script setup lang="ts">
 
+import type { T_Catalog, T_Product } from '~/types';
+
+const { data: catalogs } = await useFetch<T_Catalog[]>('/api/catalog')
+const { data: products } = await useFetch<T_Product[]>('/api/product/all')
 </script>
 
 <template>
+  <WidgetsBanner />
   <div class="section">
     <div class="section-body max-width">
-      <h1>Index page</h1>
+      <h2>Католог</h2>
+      <WidgetsCatalogsGrid v-if="catalogs" :catalogs />
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-body max-width">
+      <h2>Блюда</h2>
+      <WidgetsProductsGrid v-if="products" :products />
     </div>
   </div>
 </template>
+
+<style></style>

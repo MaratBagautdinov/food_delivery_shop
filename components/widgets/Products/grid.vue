@@ -14,7 +14,7 @@ defineProps<{ products: T_Product[] }>()
 <style scoped>
 .products-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
 }
 </style>

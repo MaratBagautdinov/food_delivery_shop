@@ -29,11 +29,15 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .sections-wrapper {
@@ -41,7 +45,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 100px;
+  gap: 50px;
+  box-sizing: border-box;
 }
 
 .site-wrapper {
@@ -49,5 +54,18 @@ body {
   flex-direction: column;
   min-height: 100vh;
   gap: 50px;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+h3 {
+  text-transform: uppercase
 }
 </style>
