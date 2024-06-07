@@ -11,5 +11,5 @@ export default defineEventHandler<Promise<string>>(async (event) => {
         save_name: false
     }, '/products')
 
-    return fileName.Location
+    return fileName.Location ?? fileName
 })
