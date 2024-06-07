@@ -692,7 +692,7 @@
     which "^3.0.1"
     ws "^8.17.0"
 
-"@nuxt/kit@^3.11.2", "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.7.0", "@nuxt/kit@3.11.2":
+"@nuxt/kit@^3.11.2", "@nuxt/kit@^3.2.0", "@nuxt/kit@^3.7.0", "@nuxt/kit@^3.9.3", "@nuxt/kit@3.11.2":
   version "3.11.2"
   resolved "https://registry.npmjs.org/@nuxt/kit/-/kit-3.11.2.tgz"
   integrity sha512-yiYKP0ZWMW7T3TCmsv4H8+jEsB/nFriRAR8bKoSqSV9bkVYWPE36sf7JDux30dQ91jSlQG6LQkB3vCHYTS2cIg==
@@ -5235,6 +5235,14 @@ nuxi@^3.11.1:
   integrity sha512-AW71TpxRHNg8MplQVju9tEFvXPvX42e0wPYknutSStDuAjV99vWTWYed4jxr/grk2FtKAuv2KvdJxcn2W59qyg==
   optionalDependencies:
     fsevents "~2.3.3"
+
+nuxt-file-storage@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.npmjs.org/nuxt-file-storage/-/nuxt-file-storage-0.2.5.tgz"
+  integrity sha512-NloLp8VJ8SnSwWRIw0yXPbt4eZ1JB6dAo5ntPi+mzT0cT6o4beFf1MvGTFTx81GG49BF5YczWzd6G7m+Rb7/tg==
+  dependencies:
+    "@nuxt/kit" "^3.9.3"
+    defu "^6.1.4"
 
 nuxt-swiper@^1.2.2:
   version "1.2.2"
