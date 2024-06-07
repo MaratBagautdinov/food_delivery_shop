@@ -1,6 +1,18 @@
-import * as pg from 'pg';
 import { Sequelize } from 'sequelize';
 
-export default new Sequelize("postgres://default:************@ep-green-heart-a4jmt5ia.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require", {
-    dialectModule: pg
-});
+export default new Sequelize(
+    process.env.POSTGRES_DATABASE,
+    process.env.POSTGRES_USER,
+    process.env.POSTGRES_PASSWORD,
+    {
+        port: 5432,
+        host: process.env.POSTGRES_HOST,
+        dialect: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
+    },
+);
