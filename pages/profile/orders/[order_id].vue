@@ -21,7 +21,7 @@ const { data: order, error, status } = await useFetch<T_Order>(`/api/order/${rou
 </template>
 
 <style>
-.order-section {
+.section.order-section {
     display: grid;
     grid-template-columns: 70% auto;
     gap: 20px;

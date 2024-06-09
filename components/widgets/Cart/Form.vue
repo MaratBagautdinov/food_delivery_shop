@@ -52,9 +52,9 @@ const submitHandler = () => {
         <div class="f_addres-wrap" v-if="f_type_delivery === 'delivery'">
             <h4>Адрес</h4>
             <SharedInputText label="Улица" name="f_address_street" v-model:value="address.street" />
-            <SharedInputText label="Дом" name="f_address_strret" v-model:value="address.house" />
-            <SharedInputText label="Подъезд" name="f_address_strret" v-model:value="address.entrance" />
-            <SharedInputText label="Квартира" name="f_address_strret" v-model:value="address.room" />
+            <SharedInputText label="Дом" name="f_address_house" v-model:value="address.house" />
+            <SharedInputText label="Подъезд" name="f_address_entrance" v-model:value="address.entrance" />
+            <SharedInputText label="Квартира" name="f_address_room" v-model:value="address.room" />
         </div>
         <div class="status">
             <div class="pending" style="color: #1528af;" v-if="status === 'pending'">Обработка оформления заказа</div>
