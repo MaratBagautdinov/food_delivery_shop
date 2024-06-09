@@ -29,36 +29,39 @@ export const orderStatuses: T_OrderStatus[] = [
     id: 1,
     label: 'Новый',
     value: 0,
-    color: 'black'
+    color: '#f9eab4'
   },
   {
     id: 2,
     label: 'В обработке',
-    value: 0,
-    color: 'black'
+    value: 1,
+    color: '#e5f9b4'
   },
   {
     id: 3,
     label: 'Готовится',
-    value: 0,
-    color: 'orange'
+    value: 2,
+    color: '#7dfb93'
   },
   {
     id: 4,
     label: 'Доставляется',
-    value: 0,
-    color: 'yellow'
+    value: 3,
+    color: '#51f7d8'
   },
   {
     id: 5,
     label: 'Исполнен',
-    value: 0,
-    color: 'green'
+    value: 4,
+    color: '#7ee1ff'
   },
   {
-    id: 5,
+    id: 6,
     label: 'Отменён',
-    value: 0,
-    color: 'red'
+    value: 5,
+    color: '#ff9b8a'
   },
 ]
+export const getStatusProps = (value: T_OrderStatus['value']) => {
+  return orderStatuses.find(o => o.value == value)
+}

@@ -8,14 +8,25 @@ const userStore = useUserStore()
   <div class="section">
     <div class="section-body max-width">
       <h1>Заказы</h1>
-      <div class="orders-list" v-if="userStore.orders.length > 0">
-        <div v-for="order in userStore.orders">
-          <div>{{ order.sum }}</div>
-          <pre>{{ order.items }}</pre>
-        </div>
-      </div>
+      <table class="orders-list" v-if="userStore.orders.length > 0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>СТАТУС</th>
+            <th>СУММА</th>
+            <th>ТОВАРЫ (шт)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <EntitiesOrderRow v-for="order in userStore.orders" :order />
+      </table>
       <div v-else>Заказов не найдено. Перейдите в <NuxtLink to="/catalog">меню</NuxtLink>
       </div>
     </div>
   </div>
 </template>
+<style>
+.orders-list {
+  width: 100%;
+}
+</style>

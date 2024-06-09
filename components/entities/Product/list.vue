@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { T_Catalog, T_Order_Item, T_Product, T_ProductVariant } from '~/types';
+import type { T_Catalog, T_Order, T_Order_Item, T_OrderStatus, T_Product, T_ProductVariant } from '~/types';
 const route = useRoute()
-const props = defineProps<{ orderItem: T_Order_Item }>()
+const props = defineProps<{ orderItem: T_Order_Item, order_status: T_Order['status_id'] }>()
 const url = `/api/product/${props.orderItem.product_id}/${props.orderItem.variant_id}`
 
 const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant, Catalog: T_Catalog }>(url)
@@ -17,8 +17,8 @@ const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant
                 product.variant?.name }}</NuxtLink>
             <div class="price">{{ product.variant.price }} руб</div>
         </h3>
-        <EntitiesProductCartActions v-if="product.variant.id" :variant="product.variant" :product_id="product.id"
-            :isCount="false" />
+        <EntitiesProductCartActions v-if="product.variant.id && order_status == 0" :variant="product.variant"
+            :product_id="product.id" :isCount="false" />
     </div>
 </template>
 
