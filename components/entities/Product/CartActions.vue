@@ -59,7 +59,7 @@ const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
         {{ inCartCount }}
         <button @click="inCartHandler" :disabled="status === 'pending'">+</button>
         <div class="price">
-            {{ variant.price }} руб
+            {{ isCount ? variant.price + " руб" : "" }}
         </div>
     </div>
 </template>

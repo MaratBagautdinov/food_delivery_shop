@@ -15,6 +15,7 @@ const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant
         <h3 class="product-name">
             <NuxtLink :to="`/catalog/${product?.Catalog?.slug}/${product.slug}`">{{ product.name }}: {{
                 product.variant?.name }}</NuxtLink>
+            <div class="price">{{ product.variant.price }} руб</div>
         </h3>
         <EntitiesProductCartActions v-if="product.variant.id" :variant="product.variant" :product_id="product.id"
             :isCount="false" />
@@ -25,6 +26,10 @@ const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant
 .product-item--list {
     display: grid;
     grid-template-columns: 100px 200px auto
+}
+
+.product-item--list h3 {
+    margin: 0;
 }
 
 .product-img {

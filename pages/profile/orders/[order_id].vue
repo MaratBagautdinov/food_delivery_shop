@@ -6,16 +6,25 @@ const { data: order, error, status } = await useFetch<T_Order>(`/api/order/${rou
 </script>
 
 <template>
-    <div class="section">
+    <div class="section order-section">
         <div class="section-body max-width">
-            <h1>Заказ</h1>
-            <div v-if="order">
-                <div>{{ order.sum }}</div>
+            <h1>Заказ № {{ order?.id }}</h1>
+            <div v-if="order" class="order-wrap">
                 <WidgetsProductsList :orderProducts="order.items" />
-                <WidgetsCartForm />
             </div>
             <div v-else>Заказов не найдено. Перейдите в <NuxtLink to="/catalog">меню</NuxtLink>
             </div>
         </div>
+        <WidgetsCartForm v-if="order" />
     </div>
+
 </template>
+
+<style>
+.order-section {
+    display: grid;
+    grid-template-columns: 70% auto;
+    gap: 20px;
+    align-items: baseline;
+}
+</style>

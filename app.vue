@@ -39,7 +39,8 @@ input[type="submit"] {
   gap: 10px;
 }
 
-button {
+button,
+label:has(input[type="radio"]) {
   padding: 10px;
   background: none;
   color: #0a6342;
@@ -49,9 +50,18 @@ button {
   transition: .2s
 }
 
-button:hover {
+button:hover,
+label:has(input[type="radio"]:checked) {
   color: #ffffff;
   background: #21c78a;
+}
+
+label:has(input[type="radio"]:not(:checked)):hover {
+  background: #b9ffe5;
+}
+
+input[type="radio"] {
+  display: none;
 }
 
 h2 {
