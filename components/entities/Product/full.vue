@@ -23,6 +23,8 @@ const inCartHandler = () => {
             useUserStore().orders = res
             status.value = 'fullfield'
         })
+    } else {
+        navigateTo("/profile")
     }
 }
 const outCartHandler = () => {

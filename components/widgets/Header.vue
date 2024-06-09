@@ -34,8 +34,8 @@ const sum = computed(() => {
                             <span v-else>{{ link.label }}</span>
                         </NuxtLink>
                     </li>
-                    <li class="menu-item">
-                        <NuxtLink :to="`/profile/orders/${cart?.id}`">
+                    <li class="menu-item" v-if="cart">
+                        <NuxtLink :to="`/profile/orders/${cart.id}`">
                             <span>Корзина: {{ sum }}</span>
                         </NuxtLink>
                     </li>
