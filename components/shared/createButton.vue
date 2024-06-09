@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-    <NuxtLink :to="`${link}?action=create`">create</NuxtLink>
+    <NuxtLink class="btn-admin" :to="`${link}?action=create`"><button>Создать</button></NuxtLink>
 </template>
 
 <style></style>

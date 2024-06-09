@@ -8,7 +8,7 @@ const isAdmin = computed(() => useUserStore().user?.name === 'ADMIN')
 </script>
 
 <template>
-    <NuxtLink v-if="isAdmin" :to="`${link}?action=edit`">edit</NuxtLink>
+    <NuxtLink class="btn-admin" v-if="isAdmin" :to="`${link}?action=edit`"><button>Редактировать</button></NuxtLink>
 </template>
 
 <style></style>
