@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useUserStore } from '~/store';
 import type { T_User } from '~/types';
+import { vMaska } from 'maska/vue'
 const userStore = useUserStore()
 const isUser = ref<T_User | false>(false)
 const submitHandler = async () => {
     status.value = 'pending'
-    $fetch<T_User | null>('/api/user/auth', {
-        query: { phone: phone.value, password: password.value },
+    $fetch<T_User | null>('/api/user/create', {
+        method: 'POST',
+        body: { name: name.value, phone: phone.value.replace(/\D/g, ''), password: password.value },
     }).then(res => {
         console.log(res);
 
@@ -18,6 +20,7 @@ const submitHandler = async () => {
         }
     })
 }
+const name = ref<string>('')
 const phone = ref<string>('')
 const password = ref<string>('')
 const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
@@ -26,14 +29,18 @@ const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
 <template>
     <div class="user-auth-block">
         <form @submit.stop.prevent="submitHandler">
+            <label for="f_name">
+                <span>Имя</span>
+                <input type="text" name="f_name" id="f_name" required="true" v-model.trim="name" />
+            </label>
             <label for="f_phone">
                 <span>Номер телефона</span>
-                <input type="text" name="f_phone" id="f_phone" v-mask="'+7 (###) ###-##-##'" v-model.trim="phone"
-                    @input="status = 'fullfield'">
+                <InputMask type="tel" name="f_phone" id="f_phone" required="required" v-model.trim="phone"
+                    mask="+7 (999) 999 99-99" placeholder="+7 (999) 999 99-99" />
             </label>
             <label for="f_password">
                 <span>Пароль</span>
-                <input type="password" name="f_password" id="f_password" v-model.trim="password"
+                <input type="password" name="f_password" id="f_password" required="true" v-model.trim="password"
                     @input="status = 'fullfield'">
             </label>
             <div class="status">

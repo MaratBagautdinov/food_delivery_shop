@@ -3,8 +3,8 @@ import { T_User } from "~/types"
 import modelUser from "~/backend/models/modelUser"
 
 export default defineEventHandler<Promise<Model<T_User, T_User> | [number, T_User[]]>>(async (event) => {
-    const { user } = await readBody<{ user: Omit<T_User, 'id'> }>(event)
-    if (!user) {
+    const user = await readBody<{ name: string, password: string, phone: string }>(event)
+    if (!user.phone) {
         return [0, []]
     }
     const isUser = await modelUser.findOne({
