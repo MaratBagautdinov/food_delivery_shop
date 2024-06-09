@@ -1,6 +1,22 @@
 import type { T_Link } from '~/types';
 
-
+export const contacts: {
+    label: string,
+    value: string
+}[] = [
+        {
+            label: 'ИНН',
+            value: 'й'
+        },
+        {
+            label: 'ОГРН',
+            value: 'ф'
+        },
+        {
+            label: 'Фактический адрес',
+            value: 'ыы'
+        },
+    ]
 export const menuNavTop: T_Link[] = [
     {
         href: "/",
