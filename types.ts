@@ -8,6 +8,7 @@ export type T_Product = {
     variants: T_ProductVariant[]
     createdAt?: Date
     updatedAt?: Date
+    Catalog: T_Catalog
 }
 
 export type T_ProductDB = {
@@ -41,6 +42,8 @@ export type T_Catalog = {
 export type T_User = {
     id: number
     name: string
+    phone: string
+    password: string
     createdAt?: Date
     updatedAt?: Date
 }
@@ -59,15 +62,13 @@ export type T_Order = {
 export type T_OrderStatus = {
     id: number
     label: string
-    value: string
+    value: number
     color?: string
 }
 export type T_Order_Item = {
     product_id: T_Product['id']
-    product_option: T_ProductVariant['id']
-    count: number
+    variant_id: T_ProductVariant['id']
     price: number
-    sum: number
 }
 
 export type T_Addres = {

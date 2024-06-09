@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
     "@types/sequelize": "^4.28.20",
     "@vercel/postgres": "^0.8.0",
     "axios": "^1.7.2",
@@ -19,6 +20,7 @@
     "nuxt-swiper": "^1.2.2",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
+    "pinia": "^2.1.7",
     "sequelize": "^6.37.3",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"

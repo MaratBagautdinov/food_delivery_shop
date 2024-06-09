@@ -13,6 +13,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      phone: {
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

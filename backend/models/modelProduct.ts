@@ -18,7 +18,7 @@ export default sequelize.define<Model<T_ProductDB>>('Products', {
         allowNull: false
     },
     catalog_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     checked: {

@@ -18,11 +18,11 @@ export default sequelize.define<Model<T_Order>>('Orders', {
         allowNull: false
     },
     items_ids: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.TEXT,
         allowNull: false
     },
     items: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
+        type: DataTypes.TEXT,
         allowNull: false
     },
     sum: {
@@ -34,7 +34,7 @@ export default sequelize.define<Model<T_Order>>('Orders', {
         allowNull: false
     },
     address: {
-        type: DataTypes.JSON,
+        type: DataTypes.TEXT,
         allowNull: false
     },
     createdAt: {

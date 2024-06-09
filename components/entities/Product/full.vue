@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { T_Product } from '~/types';
+import { useUserStore } from '~/store';
+import type { T_Order, T_Product } from '~/types';
 const route = useRoute()
 const props = defineProps<{
     product: T_Product
@@ -8,12 +9,49 @@ const props = defineProps<{
 const variant = computed(() => {
     return props.product.variants.find((p) => p.id === Number(route.query.variant))
 })
-
+const inCartHandler = () => {
+    status.value = 'pending'
+    if (useUserStore().user?.id) {
+        $fetch<T_Order[]>('/api/order/addProduct', {
+            query: {
+                user_id: useUserStore().user?.id,
+                product_id: props.product.id,
+                variant_id: variant.value?.id,
+            }
+        }).then(res => {
+            console.log(res);
+            useUserStore().orders = res
+            status.value = 'fullfield'
+        })
+    }
+}
+const outCartHandler = () => {
+    status.value = 'pending'
+    $fetch('/api/order/delProduct', {
+        query: {
+            user_id: useUserStore().user?.id,
+            product_id: props.product.id,
+            variant_id: variant.value?.id,
+        }
+    }).then(res => {
+        console.log(res);
+        useUserStore().orders = res
+        status.value = 'fullfield'
+    })
+}
+const inCartCount = computed(() => {
+    const newOrder = useUserStore().orders.find(o => {
+        return o.status_id == 0
+    })
+    if (!newOrder) return 0
+    return newOrder.items.reduce((prev, current) => prev + Number(current.product_id == props.product.id && current.variant_id == variant.value?.id), 0)
+})
+const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
 </script>
 
 <template>
     <div class="product">
-        <SharedEditButton :link="route.path" />
+        <SharedEditButton :link="`/catalog/${product.Catalog.slug}/${product.slug}`" />
         <WidgetsModal :modal-head="product.name" v-if="route.query.action">
             <EntitiesProductEditForm :product v-if="route.query.action === 'edit'" />
         </WidgetsModal>
@@ -27,6 +65,9 @@ const variant = computed(() => {
                 </div>
             </div>
             <div class="varint-wrap" v-if="variant">
+                <button @click="outCartHandler" :disabled="status === 'pending' || !inCartCount">-</button>
+                {{ inCartCount }}
+                <button @click="inCartHandler" :disabled="status === 'pending'">+</button>
                 <div class="price">
                     {{ variant.price }} руб
                 </div>
@@ -34,7 +75,6 @@ const variant = computed(() => {
                     <img :src="!!variant.photo ? variant.photo : '/entities/products/default.png'" :alt="product.name">
                 </div>
             </div>
-
         </div>
     </div>
 </template>

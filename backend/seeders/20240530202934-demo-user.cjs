@@ -5,11 +5,10 @@ module.exports = {
   async up(queryInterface) {
     const bulkUsers = [
       {
-        name: 'Марат',
-      },
-      {
-        name: '_ananimus',
-      },
+        name: 'ADMIN',
+        phone: '9968265825',
+        password: 'admin',
+      }
     ]
     await queryInterface.bulkInsert('Users', bulkUsers);
   },

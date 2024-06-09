@@ -7,9 +7,8 @@ defineProps<{ product: T_Product }>()
 
 <template>
     <div class="product-item product-item--grid">
-      <pre>{{product.catalog }}</pre>
-        <SharedEditButton :link="`/catalog/${route.params.catalog_slug}/${product.slug}`" />
-        <NuxtLink :to="`/catalog/${route.params.catalog_slug}/${product.slug}`">
+        <SharedEditButton :link="`/catalog/${product.Catalog.slug}/${product.slug}`" />
+        <NuxtLink :to="`/catalog/${product.Catalog.slug}/${product.slug}`">
             <img class="product-img"
                 :src="!!product.variants[0].photo ? product.variants[0].photo : '/entities/products/default.png'"
                 alt="">

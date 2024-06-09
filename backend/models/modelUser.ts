@@ -13,6 +13,15 @@ export default sequelize.define<Model<T_User>>('Users', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    phone: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

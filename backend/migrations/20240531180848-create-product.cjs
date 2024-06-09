@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       catalog_id: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       checked: {

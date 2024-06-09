@@ -15,11 +15,13 @@ export default defineEventHandler<Promise<[number, Model<T_ProductDB, T_ProductD
             name: product.name,
             slug: product.slug,
             variants: JSON.stringify(product.variants ?? [])
-        }, {
-        where: {
-            id: product.id
         },
-        returning: true
-    })
+        {
+            where: {
+                id: product.id
+            },
+            returning: true
+        }
+    )
     return productNew;
 })

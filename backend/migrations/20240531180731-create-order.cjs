@@ -18,11 +18,11 @@ module.exports = {
         allowNull: false,
       },
       items_ids: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       items: {
-        type: Sequelize.ARRAY(Sequelize.JSON),
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       sum: {
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false,
       },
       address: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       createdAt: {

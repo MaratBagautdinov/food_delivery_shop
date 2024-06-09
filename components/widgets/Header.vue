@@ -1,7 +1,13 @@
 <script lang="ts" setup>
 import { menuNavTop, menuUserActions } from '~/content';
+import { useUserStore } from '~/store';
+const userStore = useUserStore()
+const cart = computed(() => userStore.orders.find(o => o.status_id == 0))
 
 
+const sum = computed(() => {
+    return Number(cart.value?.items.reduce((prev, current) => { return prev + current.price }, 0))
+})
 
 </script>
 
@@ -26,6 +32,11 @@ import { menuNavTop, menuUserActions } from '~/content';
                         <NuxtLink :to="link.href">
                             <img v-if="link.icon" :src="link.icon" :alt="link.label">
                             <span v-else>{{ link.label }}</span>
+                        </NuxtLink>
+                    </li>
+                    <li class="menu-item">
+                        <NuxtLink :to="`/profile/orders/${cart?.id}`">
+                            <span>Корзина: {{ sum }}</span>
                         </NuxtLink>
                     </li>
                 </ul>

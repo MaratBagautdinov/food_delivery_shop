@@ -1,15 +1,19 @@
 import { Model } from "sequelize"
-import { T_Product } from "~/types"
+import { T_Catalog, T_Product } from "~/types"
 import Product from "~/backend/models/modelProduct"
-
+import modelCatalog from "~/backend/models/modelCatalog"
 export default defineEventHandler<Promise<Model<T_Product, T_Product>[]> | null>(() => {
-    // GET CATALOG
-    return Product.findAll().then((ps) => {
-        return ps.map(p => {
-            // @ts-ignore
-            p.variants = JSON.parse(p?.variants) ?? []
 
-            return p
+    modelCatalog.hasMany(Product, { foreignKey: 'catalog_id' })
+    Product.belongsTo(modelCatalog, { foreignKey: 'catalog_id' })
+    return Product.findAll({
+        include: [{ model: modelCatalog, required: true }]
+    }).then((ps) => {
+        const res = ps.map(p => {
+            return {
+                ...p.dataValues,
+            }
         })
+        return res
     })
 })
