@@ -28,7 +28,8 @@ const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
         <form @submit.stop.prevent="submitHandler">
             <label for="f_phone">
                 <span>Номер телефона</span>
-                <input type="text" name="f_phone" id="f_phone" v-model.trim="phone" @input="status = 'fullfield'">
+                <input type="text" name="f_phone" id="f_phone" v-mask="'+7 (###) ###-##-##'" v-model.trim="phone"
+                    @input="status = 'fullfield'">
             </label>
             <label for="f_password">
                 <span>Пароль</span>

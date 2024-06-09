@@ -4,7 +4,7 @@ import type { T_Link } from '~/types';
 export const menuNavTop: T_Link[] = [
     {
         href: "/",
-        label: "Гланая"
+        label: "Главная"
     },
     {
         href: "/catalog",

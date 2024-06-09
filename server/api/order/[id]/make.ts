@@ -22,19 +22,7 @@ export default defineEventHandler<Promise<Model<T_Order, T_Order>[]>>(async (eve
 
     const newData = isOrder.address
     console.log({ newData });
-    await Order.update(
-        {
-            address: JSON.stringify(address),
-            type,
-            status_id: 1
-        },
-        {
-            where: {
-                id: isOrder.id
-            },
-            returning: true
-        }
-    )
+
     // Required parameters.
     const outSum = isOrder.sum;
     const invDesc = 'Оформление доставки';
@@ -50,6 +38,12 @@ export default defineEventHandler<Promise<Model<T_Order, T_Order>[]>>(async (eve
         }
     };
     const paymebtUrl = robokassaApi.generatePaymentUrl(outSum, invDesc, options)
+    if (!paymebtUrl) {
+        return {
+            paymebtUrl: '',
+            order: null
+        }
+    }
     return {
         paymebtUrl,
         order: (await Order.update(

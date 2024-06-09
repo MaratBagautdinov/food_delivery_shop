@@ -10,7 +10,7 @@ const { data: products } = await useFetch<T_Product[]>('/api/product/all')
   <WidgetsBanner />
   <div class="section">
     <div class="section-body max-width">
-      <h2>Католог</h2>
+      <h2>Каталог</h2>
       <WidgetsCatalogsGrid v-if="catalogs" :catalogs />
     </div>
   </div>

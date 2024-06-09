@@ -12,6 +12,7 @@ export default defineEventHandler<Promise<Model<T_Product, T_Product>[]> | null>
         const res = ps.map(p => {
             return {
                 ...p.dataValues,
+                variants: JSON.parse(p.dataValues?.variants) ?? []
             }
         })
         return res
