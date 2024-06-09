@@ -5,35 +5,27 @@ defineProps<{ catalog: T_Catalog }>()
 </script>
 
 <template>
-    <div class="catalog-item">
-        <SharedEditButton :link="`/catalog/${catalog.slug}`" />
-        <NuxtLink :to="`/catalog/${catalog.slug}`">
-            <span class="catalog-photo"><img :src="catalog.photo ?? '/entities/products/default.png'" alt=""></span>
-            <h3 class="catalog-name">{{ catalog.name }}</h3>
-        </NuxtLink>
-    </div>
+    <NuxtLink :to="`/catalog/${catalog.slug}`" class="catalog-item" :style="{backgroundImage: `url(${catalog.photo})`}">
+        <h3 class="catalog-name">{{ catalog.name }}</h3>
+    </NuxtLink>
 </template>
 
 <style>
+.catalog-item h3{
+    color: #ffffff
+}
 .catalog-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 #00000030;
-}
-
-.product-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 0 #00000030;
-}
-
-.catalog-photo {
     width: 100%;
+    height: 200px;
+    background-color: #000000;
+    background-position: center;
+    background-size: cover;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 30px;
+    display: flex;
+    color: #ffffff;
+    box-sizing: border-box;
+    padding: 20px;
 }
 </style>

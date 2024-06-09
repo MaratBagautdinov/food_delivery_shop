@@ -19,20 +19,10 @@ const submitHandler = async () => {
         }
     })
     if (id) {
-        navigateTo({ path: route.path, query: { variant: route.query.variant } })
+        navigateTo({ path: route.path, query: {} })
     }
 }
 
-const addVariant = () => {
-    productFields.value.variants.push({
-        checked: true,
-        id: Number(new Date),
-        name: '',
-        photo: '',
-        price: 0,
-        slug: ''
-    })
-}
 </script>
 
 <template>
@@ -43,15 +33,8 @@ const addVariant = () => {
         <label for="f_slug">
             <input type="text" name="f_slug" id="f_slug" v-model.trim="productFields.slug">
         </label>
-        <label for="f_checked">
-            Включён
-            <input type="checkbox" name="f_checked" :checked="productFields.checked" id="f_checked"
-                v-model.trim="productFields.checked">
-        </label>
-        <div class="varints-list">
-            <EntitiesProductEditFormVariant v-for="variant in productFields.variants" :variant />
-            <div class="create-variant-btn" @click="addVariant">Создать вариант</div>
-        </div>
+        <SharedCheckedInput v-model:checked="productFields.checked" name="f_checked" />
+        <EntitiesProductEditFormVariantsList v-model:variants="productFields.variants" />
         <input type="submit" class="submut" value="Создать товар" />
     </form>
 </template>

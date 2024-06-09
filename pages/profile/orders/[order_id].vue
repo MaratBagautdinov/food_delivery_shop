@@ -11,7 +11,7 @@ const { data: order, error, status } = await useFetch<T_Order>(`/api/order/${rou
             <h1>Заказ</h1>
             <div v-if="order">
                 <div>{{ order.sum }}</div>
-                <pre>{{ order.items }}</pre>
+                <WidgetsProductsList :orderProducts="order.items" />
                 <WidgetsCartForm />
             </div>
             <div v-else>Заказов не найдено. Перейдите в <NuxtLink to="/catalog">меню</NuxtLink>

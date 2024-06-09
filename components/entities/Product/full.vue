@@ -9,46 +9,6 @@ const props = defineProps<{
 const variant = computed(() => {
     return props.product.variants.find((p) => p.id === Number(route.query.variant))
 })
-const inCartHandler = () => {
-    status.value = 'pending'
-    if (useUserStore().user?.id) {
-        $fetch<T_Order[]>('/api/order/addProduct', {
-            query: {
-                user_id: useUserStore().user?.id,
-                product_id: props.product.id,
-                variant_id: variant.value?.id,
-            }
-        }).then(res => {
-            console.log(res);
-            useUserStore().orders = res
-            status.value = 'fullfield'
-        })
-    } else {
-        navigateTo("/profile")
-    }
-}
-const outCartHandler = () => {
-    status.value = 'pending'
-    $fetch('/api/order/delProduct', {
-        query: {
-            user_id: useUserStore().user?.id,
-            product_id: props.product.id,
-            variant_id: variant.value?.id,
-        }
-    }).then(res => {
-        console.log(res);
-        useUserStore().orders = res
-        status.value = 'fullfield'
-    })
-}
-const inCartCount = computed(() => {
-    const newOrder = useUserStore().orders.find(o => {
-        return o.status_id == 0
-    })
-    if (!newOrder) return 0
-    return newOrder.items.reduce((prev, current) => prev + Number(current.product_id == props.product.id && current.variant_id == variant.value?.id), 0)
-})
-const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
 </script>
 
 <template>
@@ -57,25 +17,15 @@ const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
         <WidgetsModal :modal-head="product.name" v-if="route.query.action">
             <EntitiesProductEditForm :product v-if="route.query.action === 'edit'" />
         </WidgetsModal>
-        <h2>Name: {{ product.name }}</h2>
-        <div class="offer">
-            <div class="variant-list" v-if="product.variants.length > 1">
-                <div clsss='variant-item' v-for="variant in product.variants">
-                    <NuxtLink v-if="variant.checked" :to="{ path: product.slug, query: { variant: variant.id } }">{{
-                        variant.name }} {{
-                            variant.price }} руб</NuxtLink>
-                </div>
+        <h2>{{ product.Catalog.name }}: {{ product.name }}</h2>
+        <div class="product-wrap">
+            <div class="gallery">
+                <img :src="!!variant?.photo ? variant.photo : '/entities/products/default.png'" :alt="product.name">
             </div>
-            <div class="varint-wrap" v-if="variant">
-                <button @click="outCartHandler" :disabled="status === 'pending' || !inCartCount">-</button>
-                {{ inCartCount }}
-                <button @click="inCartHandler" :disabled="status === 'pending'">+</button>
-                <div class="price">
-                    {{ variant.price }} руб
-                </div>
-                <div class="gallery">
-                    <img :src="!!variant.photo ? variant.photo : '/entities/products/default.png'" :alt="product.name">
-                </div>
+            <div class="offer">
+                <EntitiesProductVariantList v-if="product.variants.length > 1" :variants="product.variants"
+                    :product="product" />
+                <EntitiesProductCartActions v-if="variant" :variant :product_id="product.id" />
             </div>
         </div>
     </div>
@@ -83,12 +33,19 @@ const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
 
 <style>
 .gallery {
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px
 }
 
 .gallery img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.product-wrap {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 400px auto
 }
 </style>

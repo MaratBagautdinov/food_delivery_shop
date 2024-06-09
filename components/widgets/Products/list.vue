@@ -1,19 +1,23 @@
 <script lang="ts" setup>
-import type { T_Product } from '~/types';
-const route = useRoute()
-defineProps<{ products: T_Product[] }>()
+import { useUserStore } from '~/store';
+import type { T_Order, T_Order_Item, T_orderProduct } from '~/types';
+const props = defineProps<{
+    orderProducts: T_Order_Item[]
+}>()
+
 </script>
 
 <template>
-    <div class="products-list products-list--list">
-        <EntitiesProductList v-for="product in products" :product :key="product.id" />
+    <div class="products-list products-list--list" v-if="orderProducts">
+        <EntitiesProductList v-for="orderItem in orderProducts" :orderItem
+            :key="`${orderItem.product_id}_${orderItem.variant_id}`" />
     </div>
 </template>
 
 <style scoped>
 .products-list {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
 }
 </style>

@@ -62,8 +62,8 @@ defineProps<{
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 600px;
-    height: 500px;
+    width: 1200px;
+    height: 600px;
     background-color: #fff;
     border-radius: 10px;
     box-sizing: border-box;

@@ -36,9 +36,7 @@ const viewType = ref<keyof typeof viewTypeTemplates>('WidgetsProductsGrid')
 <template>
   <div class="section">
     <div class="section-body max-width" v-if="catalog">
-      <h1>Catalog sub page: {{ catalog.name }}</h1>
-      <img class="catalog-full-img" :src="catalog.photo ?? '/entities/products/default.png'" alt="">
-      <WidgetsFilter v-model:viewTypeModel="viewType" :viewTypes />
+      <!-- <WidgetsFilter v-model:viewTypeModel="viewType" :viewTypes /> -->
       <EntitiesCatalogFull :catalog :products="products ?? []" :viewType />
     </div>
   </div>

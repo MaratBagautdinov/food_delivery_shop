@@ -7,7 +7,7 @@ const userStore = useUserStore()
 <template>
     <div class="section">
         <div class="section-body max-width">
-            <h1>Profile page</h1>
+            <h1>Профиль</h1>
             <EntitiesUserFull v-if="userStore.user?.id" />
             <EntitiesUserAuth v-else />
         </div>

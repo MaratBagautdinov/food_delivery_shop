@@ -11,7 +11,7 @@ watch(files.value, async () => {
         console.error("FILE NOT UPLOAD");
         return
     }
-  photo.value = await $fetch<string>(`/api/files/upload`, {
+    photo.value = await $fetch<string>(`/api/files/upload`, {
         method: 'POST',
         body: {
             file: newFile
@@ -25,8 +25,16 @@ watch(files.value, async () => {
         <input type="file" :name="name" :id="name" @input="handleFileInput" accept="image/png, image/gif, image/jpeg">
     </label>
 </template>
-<style>
+<style scoped>
 .file_img {
-    height: 70px;
+    height: 50px;
+}
+
+label {
+    cursor: pointer;
+}
+
+label input {
+    display: none;
 }
 </style>

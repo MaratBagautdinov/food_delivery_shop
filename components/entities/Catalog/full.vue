@@ -17,11 +17,33 @@ const props = defineProps<{
 </script>
 
 <template>
-    <SharedEditButton :link="route.path" />
-    <SharedCreateButton :link="route.path" />
+    <div class="buttons">
+        <SharedEditButton :link="route.path" />
+        <SharedCreateButton :link="route.path" />
+    </div>
+    <div class="catalog-banner" :style="{backgroundImage: `url(${catalog.photo})`}">
+        <h1>{{ catalog.name }}</h1>
+    </div>
     <WidgetsModal :modalHead="catalog.name" v-if="route.query.action">
         <EntitiesCatalogEditForm :catalog v-if="route.query.action === 'edit'" />
         <EntitiesProductCreateForm v-if="route.query.action === 'create'" />
     </WidgetsModal>
     <component :is="viewTypeTemplates[viewType]" :products v-if="products" />
 </template>
+<style>
+.catalog-banner {
+    width: 100%;
+    height: 200px;
+    background-color: #000000;
+    background-position: center;
+    background-size: cover;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 30px;
+    display: flex;
+    align-items:center;
+    color: #ffffff;
+    box-sizing: border-box;
+    padding-left: 100px;
+}
+</style>

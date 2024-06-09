@@ -59,6 +59,7 @@ export type T_Order = {
     createdAt?: Date
     updatedAt?: Date
 }
+export type T_orderProduct = T_Product & { Catalog: T_Catalog } & { variant: T_ProductVariant }
 export type T_OrderStatus = {
     id: number
     label: string
@@ -69,6 +70,7 @@ export type T_Order_Item = {
     product_id: T_Product['id']
     variant_id: T_ProductVariant['id']
     price: number
+    count: number
 }
 
 export type T_Addres = {

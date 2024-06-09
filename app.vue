@@ -15,7 +15,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 300px;
 }
 
 label {
@@ -53,5 +52,10 @@ button {
 button:hover {
   color: #ffffff;
   background: #21c78a;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 </style>

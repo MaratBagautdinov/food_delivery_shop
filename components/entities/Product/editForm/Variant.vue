@@ -8,25 +8,22 @@ const props = defineProps<{
 
 <template>
     <div class="variant-item">
+        <SharedInputFile :name="`f_variants[${variant.id}][photo]`" v-model:photo="variant.photo" />
         <label :for="`f_variants[${variant.id}][name]`">
             <input type="text" :name="`f_variants[${variant.id}][name]`" :id="`f_variants[${variant.id}][name]`"
                 v-model="variant.name">
         </label>
         <label :for="`f_variants[${variant.id}][price]`">
-            <input type="text" :name="`f_variants[${variant.id}][price]`" :id="`f_variants[${variant.id}][price]`"
+            <input type="number" :name="`f_variants[${variant.id}][price]`" :id="`f_variants[${variant.id}][price]`"
                 v-model="variant.price">
         </label>
-        <SharedInputFile :name="`f_variants[${variant.id}][photo]`" v-model:photo="variant.photo" />
-        <label for="f_variants[][checked]">
-            Включён
-            <input type="checkbox" :checked="variant.checked" :name="`f_variants[${variant.id}][checked]`"
-                :id="`f_variants[${variant.id}][checked]`" v-model="variant.checked">
-        </label>
+        <SharedCheckedInput v-model:checked="variant.checked" :name="`f_variants[${variant.id}][checked]`" />
     </div>
 </template>
-
-<style>
+<style scoped>
 .variant-item {
+    display: flex;
+    gap: 10px;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid black;
