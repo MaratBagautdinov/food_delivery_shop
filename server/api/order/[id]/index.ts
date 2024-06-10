@@ -1,6 +1,7 @@
 import { Model } from "sequelize"
 import { T_Order } from "~/types"
 import modelOrder from "~/backend/models/modelOrder"
+import { payment } from "../payment"
 
 export default defineEventHandler<Promise<Model<T_Order, T_Order> | null> | null>(async (event) => {
     const id = event.context.params?.id
@@ -10,9 +11,12 @@ export default defineEventHandler<Promise<Model<T_Order, T_Order> | null> | null
             id
         }
     }))?.dataValues
+    if (!order) return null
+    const paymentUrl = order.status_id == 0 ? (await payment('YOO', order)) : ''
     return {
         ...order,
-        items_ids: JSON.parse(order.items_ids),
-        items: JSON.parse(order.items)
+        items_ids: JSON.parse(String(order.items_ids)),
+        items: JSON.parse(String(order.items)),
+        paymentUrl
     }
 })

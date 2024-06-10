@@ -1,9 +1,9 @@
 // 1. CREATING NEW INSTANCE
 import robokassa from 'node-robokassa';
 import YooKassa from 'yookassa';
-import {T_Order} from "~/types";
+import { T_Order } from "~/types";
 
-export const payment = (type: 'ROBO' | 'YOO', order: T_Order) => {
+export const payment = async (type: 'ROBO' | 'YOO', order: T_Order) => {
     let paymentUrl = ''
     switch (type) {
         case "ROBO": {
@@ -33,14 +33,14 @@ export const payment = (type: 'ROBO' | 'YOO', order: T_Order) => {
         }
         case
             "YOO"
-        :
+            :
             {
                 const yooKassaApi = new YooKassa({
                     shopId: process.env.YOOKASSA_SHOP_ID,
                     secretKey: process.env.YOOKASSA_SECRET_KEY
                 });
 
-                paymentUrl = yooKassaApi.createPayment({
+                paymentUrl = (await yooKassaApi.createPayment({
                     amount: {
                         value: String(order.sum) + ".00",
                         currency: "RUB"
@@ -50,13 +50,13 @@ export const payment = (type: 'ROBO' | 'YOO', order: T_Order) => {
                     },
                     confirmation: {
                         type: "redirect",
-                        return_url: "https://food-delivery-shop.vercel.app/"
+                        return_url: `https://food-delivery-shop.vercel.app/api/order/${order.id}/payment-confirm`
                     },
                     description: "Заказ №" + order.id
-                }, String(order.id));
+                })).confirmation.confirmation_url;
                 break
             }
-        }
-            return paymentUrl
     }
+    return paymentUrl
+}
 

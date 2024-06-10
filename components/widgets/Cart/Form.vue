@@ -2,7 +2,6 @@
 import type { T_Order } from '~/types';
 
 const route = useRoute()
-const router = useRouter()
 const status = ref<'pending' | 'rejected' | 'fullfield'>('fullfield')
 const address = ref<T_Order['address']>({
     city: 'Набережные Челны',
@@ -16,19 +15,11 @@ const f_type_delivery = ref<T_Order['type']>('delivery')
 watch(f_type_delivery, () => {
     console.log(f_type_delivery.value);
 })
+const props = defineProps<{
+    paymentUrl: string
+}>()
 const submitHandler = () => {
-    status.value = 'pending'
-    $fetch<{ paymentUrl: string, order: T_Order }>(`/api/order/${route.params.order_id}/make`, {
-        query: { order_id: route.params.order_id, type: f_type_delivery.value, address: address.value },
-    }).then(res => {
-        console.log(res);
-        if (res?.paymentUrl) {
-            navigateTo(res.paymentUrl, { redirectCode: 301, external: true })
-            status.value = 'fullfield'
-        } else {
-            status.value = 'rejected'
-        }
-    })
+    navigateTo(props.paymentUrl, { redirectCode: 301, external: true })
 }
 </script>
 
@@ -51,10 +42,11 @@ const submitHandler = () => {
         </div>
         <div class="f_addres-wrap" v-if="f_type_delivery === 'delivery'">
             <h4>Адрес</h4>
-            <SharedInputText label="Улица" name="f_address_street" v-model:value="address.street" />
-            <SharedInputText label="Дом" name="f_address_house" v-model:value="address.house" />
-            <SharedInputText label="Подъезд" name="f_address_entrance" v-model:value="address.entrance" />
-            <SharedInputText label="Квартира" name="f_address_room" v-model:value="address.room" />
+            <SharedInputText label="Улица" name="f_address_street" :required="true" v-model:value="address.street" />
+            <SharedInputText label="Дом" name="f_address_house" :required="true" v-model:value="address.house" />
+            <SharedInputText label="Подъезд" name="f_address_entrance" :required="true"
+                v-model:value="address.entrance" />
+            <SharedInputText label="Квартира" name="f_address_room" :required="true" v-model:value="address.room" />
         </div>
         <div class="status">
             <div class="pending" style="color: #1528af;" v-if="status === 'pending'">Обработка оформления заказа</div>

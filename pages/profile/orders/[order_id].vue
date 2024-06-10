@@ -2,7 +2,7 @@
 import type { T_Order } from '~/types';
 
 const route = useRoute()
-const { data: order } = await useFetch<T_Order>(`/api/order/${route.params.order_id}`)
+const { data: order } = await useFetch<T_Order & { paymentUrl?: string }>(`/api/order/${route.params.order_id}`)
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const { data: order } = await useFetch<T_Order>(`/api/order/${route.params.order
             <div v-else>Заказов не найдено. Перейдите в <NuxtLink to="/catalog">меню</NuxtLink>
             </div>
         </div>
-        <WidgetsCartForm v-if="order && order.status_id === 0" />
+        <WidgetsCartForm v-if="order && order.status_id === 0 && order.paymentUrl" :paymentUrl="order.paymentUrl" />
     </div>
 
 </template>

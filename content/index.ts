@@ -18,11 +18,7 @@ export const contacts: {
         },
         {
             label: 'Контактный e-mail',
-            value: 'marat.bagautdinov522@mail.ru'
-        },
-        {
-            label: 'Генеральный директор',
-            value: 'Багаутдинов Марат Флоритович'
+            value: 'help@bigspoon.ru'
         },
         {
             label: 'Фактический адрес',
@@ -59,8 +55,8 @@ export const contactsList: { href: string, label: string }[] = [
         label: '+7 (996) 826 58 25'
     },
     {
-        href: 'mailto:pizza@mail.ru',
-        label: 'pizza@mail.ru'
+        href: 'mailto:help@bigspoon.ru',
+        label: 'help@bigspoon.ru'
     }
 ]
 export const banners: string[] = [
