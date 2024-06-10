@@ -18,12 +18,12 @@ watch(f_type_delivery, () => {
 })
 const submitHandler = () => {
     status.value = 'pending'
-    $fetch<{ paymebtUrl: string, order: T_Order }>(`/api/order/${route.params.order_id}/make`, {
+    $fetch<{ paymentUrl: string, order: T_Order }>(`/api/order/${route.params.order_id}/make`, {
         query: { order_id: route.params.order_id, type: f_type_delivery.value, address: address.value },
     }).then(res => {
         console.log(res);
-        if (res?.paymebtUrl) {
-            navigateTo(res.paymebtUrl, { redirectCode: 301, external: true })
+        if (res?.paymentUrl) {
+            navigateTo(res.paymentUrl, { redirectCode: 301, external: true })
             status.value = 'fullfield'
         } else {
             status.value = 'rejected'
@@ -58,7 +58,7 @@ const submitHandler = () => {
         </div>
         <div class="status">
             <div class="pending" style="color: #1528af;" v-if="status === 'pending'">Обработка оформления заказа</div>
-            <div class="red" style="color: red;" v-else-if="status === 'rejected'">Пользователь не найден</div>
+            <div class="red" style="color: red;" v-else-if="status === 'rejected'">Ошибка оформления заказа</div>
         </div>
         <input type="submit" class="submut" value="Перейти к оплате" />
     </form>
