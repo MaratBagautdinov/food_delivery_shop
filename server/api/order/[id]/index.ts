@@ -12,7 +12,12 @@ export default defineEventHandler<Promise<Model<T_Order, T_Order> | null> | null
         }
     }))?.dataValues
     if (!order) return null
-    const paymentUrl = order.status_id == 0 ? (await payment('YOO', order)) : ''
+    let paymentUrl: string = ''
+    try {
+        paymentUrl = order.status_id == 0 ? (await payment('YOO', order)) : ''
+    } catch (e) {
+        console.log(e);
+    }
     return {
         ...order,
         items_ids: JSON.parse(String(order.items_ids)),
