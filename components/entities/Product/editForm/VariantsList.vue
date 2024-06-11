@@ -3,7 +3,7 @@ import type { T_ProductVariant } from '~/types';
 
 const variants = defineModel<T_ProductVariant[]>('variants')
 const addVariant = () => {
-    variants.value = [...variants.value, {
+    variants.value = [...variants?.value, {
         checked: true,
         id: Number(new Date),
         name: '',

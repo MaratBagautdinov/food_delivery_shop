@@ -15,9 +15,21 @@ if (!route.params.variant) {
 </script>
 
 <template>
+    <WidgetsCrumbs :crumbs="[{
+        label: 'Каталог',
+        url: '/catalog'
+    },
+    {
+        label: `${product?.Catalog.name}`,
+        url: `/catalog/${product?.Catalog.slug}`
+    },
+    {
+        label: `${product?.name}`,
+        url: `/catalog/${product?.Catalog.slug}/${product?.slug}`
+    }
+    ]" />
     <div class="section">
         <div class="section-body max-width">
-            <h1>Товар</h1>
             <EntitiesProductFull v-if="product" :product />
             <div v-else>
                 <pre>{{ error }}</pre>

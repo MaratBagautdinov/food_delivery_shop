@@ -12,10 +12,7 @@ export default defineEventHandler<Promise<Model<T_ProductDB, T_ProductDB> | [num
     let productNew = await Product.create(
         {
             id: productLast + 1,
-            catalog_id: product.catalog_id,
-            checked: product.checked,
-            name: product.name,
-            slug: product.slug,
+            ...product,
             variants: JSON.stringify(product.variants ?? [])
         }
     )

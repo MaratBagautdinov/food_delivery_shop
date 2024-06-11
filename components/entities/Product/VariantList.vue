@@ -5,13 +5,15 @@ const props = defineProps<{
     variants: T_ProductVariant[],
     product: T_Product
 }>()
-
+const variantsChecked = computed(() => {
+    return props.variants.filter((v) => v.checked)
+})
 </script>
 
 <template>
 
     <div class="variant-list">
-        <NuxtLink class='variant-item' v-for="variant in variants"
+        <NuxtLink class='variant-item' v-for="variant in variantsChecked"
             :to="{ path: `/catalog/${product.Catalog.slug}/${product.slug}`, query: { variant: variant.id } }">
             <button>{{
                 variant.name }} {{

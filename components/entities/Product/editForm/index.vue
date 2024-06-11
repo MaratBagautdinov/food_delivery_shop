@@ -17,25 +17,16 @@ const submitHandler = async () => {
 
     navigateTo({ path: route.path, query: { variant: productFields.value.variants[0].id } })
 }
-const addVariant = () => {
-    productFields.value.variants.push({
-        checked: true,
-        id: Number(new Date),
-        name: '',
-        photo: '',
-        price: 0,
-        slug: ''
-    })
-}
 </script>
 
 <template>
     <form @submit.stop.prevent="submitHandler">
-        <label for="f_name">
-            <input type="text" name="f_name" id="f_name" v-model.trim="productFields.name">
-        </label>
-        <SharedCheckedInput v-model:checked="productFields.checked" name="f_checked" />
+        <div class="flex">
+            <SharedInputText label="Наименование" name="f_name" v-model:value="productFields.name" :required="false" />
+            <SharedCheckedInput v-model:checked="productFields.checked" name="f_checked" />
+        </div>
         <EntitiesProductEditFormVariantsList v-model:variants="productFields.variants" />
+        <SharedInputTextarea label="Описание" name="f_desc" v-model:value="productFields.desc" :required="false" />
         <input type="submit" class="submut" value="submit" />
     </form>
 </template>

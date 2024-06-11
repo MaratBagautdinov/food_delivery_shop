@@ -21,13 +21,16 @@ watch(files.value, async () => {
 </script>
 <template>
     <label :for="name">
-        <img class="file_img" v-if="photo" :src="photo" :alt="name">
+        <img class="file_img" :src="!!photo ? photo : '/entities/products/default.png'" :alt="name">
         <input type="file" :name="name" :id="name" @input="handleFileInput" accept="image/png, image/gif, image/jpeg">
     </label>
 </template>
 <style scoped>
 .file_img {
-    height: 50px;
+    height: auto;
+    width: auto;
+    max-height: 50px;
+    max-width: 80px;
 }
 
 label {

@@ -11,10 +11,8 @@ export default defineEventHandler<Promise<[number, Model<T_ProductDB, T_ProductD
 
     let productNew = await Product.update(
         {
-            checked: product.checked,
-            name: product.name,
-            slug: product.slug,
-            variants: JSON.stringify(product.variants ?? [])
+            ...product,
+            variants: JSON.stringify(product.variants ?? []),
         },
         {
             where: {

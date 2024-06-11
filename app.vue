@@ -64,8 +64,28 @@ input[type="radio"] {
   display: none;
 }
 
+input:disabled,
+button:disabled {
+  opacity: .5;
+  border: 2px solid #00000067;
+}
+
 h2 {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+}
+
+.flex {
+  gap: 20px;
+  display: flex;
+}
+
+h1 {
+  margin-top: 0
 }
 </style>

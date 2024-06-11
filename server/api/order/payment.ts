@@ -3,7 +3,7 @@ import robokassa from 'node-robokassa';
 import YooKassa from 'yookassa';
 import { T_Order } from "~/types";
 
-export const payment = async (type: 'ROBO' | 'YOO', order: T_Order) => {
+export const payment = async (type: 'ROBO' | 'YOO', order: T_Order): Promise<string> => {
     let paymentUrl = ''
     switch (type) {
         case "ROBO": {

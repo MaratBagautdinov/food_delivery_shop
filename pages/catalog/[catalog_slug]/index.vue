@@ -34,6 +34,14 @@ const viewType = ref<keyof typeof viewTypeTemplates>('WidgetsProductsGrid')
 </script>
 
 <template>
+  <WidgetsCrumbs :crumbs="[{
+    label: 'Каталог',
+    url: '/catalog'
+  },
+  {
+    label: `${catalog?.name}`,
+    url: `/catalog/${catalog?.slug}`
+  }]" />
   <div class="section">
     <div class="section-body max-width" v-if="catalog">
       <!-- <WidgetsFilter v-model:viewTypeModel="viewType" :viewTypes /> -->

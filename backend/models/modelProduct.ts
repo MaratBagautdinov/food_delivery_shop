@@ -25,6 +25,7 @@ export default sequelize.define<Model<T_ProductDB>>('Products', {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
+    desc: DataTypes.TEXT,
     variants: DataTypes.TEXT,
     createdAt: {
         type: DataTypes.DATE,

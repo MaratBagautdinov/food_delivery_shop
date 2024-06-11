@@ -8,7 +8,13 @@ export type T_Product = {
     variants: T_ProductVariant[]
     createdAt?: Date
     updatedAt?: Date
+    desc: string
     Catalog: T_Catalog
+}
+
+export type T_Crumb = {
+    label: string
+    url: string
 }
 
 export type T_ProductDB = {
@@ -18,6 +24,7 @@ export type T_ProductDB = {
     catalog_id: number
     checked: boolean
     variants: string
+    desc: string
     createdAt?: Date
     updatedAt?: Date
 }
