@@ -23,8 +23,7 @@ const variant = computed(() => {
                 <img :src="!!variant?.photo ? variant.photo : '/entities/products/default.png'" :alt="product.name">
             </div>
             <div class="offer">
-                <EntitiesProductVariantList v-if="product.variants.length > 1" :variants="product.variants"
-                    :product="product" />
+                <EntitiesProductVariantList :variants="product.variants" :product="product" />
                 <EntitiesProductCartActions v-if="variant" :variant :product_id="product.id" :isCount="true" />
                 <div class="desc" v-if="product?.desc">
                     {{ product.desc }}

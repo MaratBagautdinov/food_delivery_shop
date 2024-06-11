@@ -15,8 +15,7 @@ const variant = computed(() => {
                 :style="{ backgroundImage: `url(${!!product.variants[0].photo ? product.variants[0].photo : '/entities/products/default.png'})` }">
             </div>
             <h3 class="product-name">{{ product.name }}</h3>
-            <EntitiesProductVariantList v-if="product.variants.length > 0" :variants="product.variants"
-                :product="product" />
+            <EntitiesProductVariantList :variants="product.variants" :product="product" />
         </NuxtLink>
     </div>
 </template>
