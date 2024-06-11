@@ -27,7 +27,8 @@ const { data: product } = await useLazyFetch<T_Product & { variant: T_ProductVar
     padding: 10px;
     gap: 5px;
     display: grid;
-    grid-template-columns: 100px 200px auto;
+    grid-template-columns: 100px auto;
+    width: 300px;
     box-shadow: 0 0 10px 0 #00000030;
     scale: 1;
     transition: .3s;
