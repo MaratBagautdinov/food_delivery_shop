@@ -4,7 +4,7 @@ const route = useRoute()
 const props = defineProps<{ orderItem: T_Order_Item, order_status: T_Order['status_id'] }>()
 const url = `/api/product/${props.orderItem.product_id}/${props.orderItem.variant_id}`
 
-const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant, Catalog: T_Catalog }>(url)
+const { data: product } = await useLazyFetch<T_Product & { variant: T_ProductVariant, Catalog: T_Catalog }>(url)
 </script>
 
 <template>
@@ -17,15 +17,20 @@ const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant
                 product.variant?.name }}</NuxtLink>
             <div class="price">{{ product.variant.price }} руб</div>
         </h3>
-        <EntitiesProductCartActions v-if="product.variant.id && order_status == 0" :variant="product.variant"
-            :product_id="product.id" :isCount="false" />
+        <!-- <EntitiesProductCartActions v-if="product.variant.id && order_status == 0" :variant="product.variant"
+            :product_id="product.id" :isCount="false" /> -->
     </div>
 </template>
 
 <style scoped>
 .product-item--list {
+    padding: 10px;
+    gap: 5px;
     display: grid;
-    grid-template-columns: 100px 200px auto
+    grid-template-columns: 100px 200px auto;
+    box-shadow: 0 0 10px 0 #00000030;
+    scale: 1;
+    transition: .3s;
 }
 
 .product-item--list h3 {
@@ -33,6 +38,9 @@ const { data: product } = await useFetch<T_Product & { variant: T_ProductVariant
 }
 
 .product-img {
-    height: 100px
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 8px;
 }
 </style>

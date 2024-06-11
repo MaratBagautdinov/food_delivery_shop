@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { T_Order } from '~/types';
+import type { T_Order, T_Order_Item } from '~/types';
 
 const route = useRoute()
-const { data: order } = await useFetch<T_Order & { paymentUrl?: string }>(`/api/order/${route.params.order_id}`)
+const { data: order } = await useLazyFetch<T_Order & { paymentUrl?: string }>(`/api/order/${route.params.order_id}`)
 </script>
 
 <template>

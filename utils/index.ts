@@ -4,6 +4,16 @@ export const { format: formatNumber } = Intl.NumberFormat('ru-RU', {
   notation: 'compact',
   maximumFractionDigits: 1
 })
+export const delOneItem = (oldItems: T_Order_Item[], productOffer: { product_id: number, variant_id: number }): T_Order_Item[] => {
+  const index = oldItems.findIndex(i => (i.product_id == productOffer.product_id && i.variant_id == productOffer.variant_id))
+  let ii: T_Order_Item[] = []
+  if (index > -1) {
+    ii = oldItems.splice(index, 1)
+  }
+  console.log({ oldItems, ii, index });
+
+  return oldItems
+}
 
 export const uniqueArray = (array: any[]) => Array.from(new Set(array))
 export const updateCart = (items: T_Order_Item[], user_id: number, address: string) => {

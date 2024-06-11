@@ -2,8 +2,8 @@
 
 import type { T_Catalog, T_Product } from '~/types';
 
-const { data: catalogs } = await useFetch<T_Catalog[]>('/api/catalog')
-const { data: products } = await useFetch<T_Product[]>('/api/product/all')
+const { data: catalogs } = await useLazyFetch<T_Catalog[]>('/api/catalog')
+const { data: products } = await useLazyFetch<T_Product[]>('/api/product/all')
 </script>
 
 <template>

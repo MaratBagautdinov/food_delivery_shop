@@ -10,10 +10,14 @@ const viewTypeTemplates = {
 }
 const props = defineProps<{
     catalog: T_Catalog
-    products: T_Product[]
     viewType: keyof typeof viewTypeTemplates
 }>()
 
+const { data: products } = await useLazyFetch<T_Product[]>(`/api/product?catalog_id=${props.catalog?.id}`, {
+    onRequestError({ request, options, error }) {
+        router.push({ path: '/catalog' })
+    }
+})
 </script>
 
 <template>
@@ -21,7 +25,7 @@ const props = defineProps<{
         <SharedEditButton :link="route.path" />
         <SharedCreateButton :link="route.path" />
     </div>
-    <div class="catalog-banner" :style="{backgroundImage: `url(${catalog.photo})`}">
+    <div class="catalog-banner" :style="{ backgroundImage: `url(${catalog.photo})` }">
         <h1>{{ catalog.name }}</h1>
     </div>
     <WidgetsModal :modalHead="catalog.name" v-if="route.query.action">
@@ -41,7 +45,7 @@ const props = defineProps<{
     overflow: hidden;
     border-radius: 30px;
     display: flex;
-    align-items:center;
+    align-items: center;
     color: #ffffff;
     box-sizing: border-box;
     padding-left: 100px;

@@ -3,7 +3,7 @@ import type { T_Product } from '~/types';
 
 const route = useRoute()
 const router = useRouter()
-const { data: product, error, status } = await useFetch<T_Product>(`/api/product/${route.params.product_slug}`, {
+const { data: product, error, status } = await useLazyFetch<T_Product>(`/api/product/${route.params.product_slug}`, {
     onRequestError({ request, options, error }) {
         router.push({ path: '/catalog' })
     },
@@ -15,7 +15,7 @@ if (!route.params.variant) {
 </script>
 
 <template>
-    <WidgetsCrumbs :crumbs="[{
+    <WidgetsCrumbs v-if="product" :crumbs="[{
         label: 'Каталог',
         url: '/catalog'
     },
