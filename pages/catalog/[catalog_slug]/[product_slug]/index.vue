@@ -4,13 +4,21 @@ import type { T_Product } from '~/types';
 const route = useRoute()
 const router = useRouter()
 const { data: product, error, status } = await useLazyFetch<T_Product>(`/api/product/${route.params.product_slug}`, {
-    onRequestError({ request, options, error }) {
+    onResponseError({ request, options, error }) {
         router.push({ path: '/catalog' })
     },
+    onResponse({ response: { _data } }) {
+        const varParam = route.query.variant
+        console.log(varParam);
+        if (!varParam || !_data.variants.find((v) => v.id == varParam)) {
+            const variant_id = _data.variants[0].id
+            console.log(variant_id);
+            router.replace({ path: route.fullPath, query: { ...route.query, variant: variant_id } })
+        }
+    },
 })
-if (!route.params.variant) {
-    navigateTo({ path: product?.value?.slug, query: { ...route.query, variant: product?.value?.variants[0].id } })
-}
+
+
 
 </script>
 

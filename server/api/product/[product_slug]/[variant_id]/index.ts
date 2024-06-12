@@ -10,6 +10,7 @@ export default defineEventHandler<Promise<Model<T_ProductDB, T_ProductDB> & { va
     modelCatalog.hasMany(Product, { foreignKey: 'catalog_id' })
     Product.belongsTo(modelCatalog, { foreignKey: 'catalog_id' })
     let product = Product.findOne({
+        include: [modelCatalog],
         where: {
             id: product_slug
         }

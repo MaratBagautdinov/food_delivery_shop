@@ -86,4 +86,26 @@ img {
 .menu-item:hover a {
     background-color: rgb(255, 255, 255)
 }
+
+@media (max-width: 900px) {
+    .header-body {
+        flex-direction: column;
+    }
+
+    .menu-item a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 500px) {
+    ul.menu-list {
+        flex-direction: column;
+    }
+
+    .header-body {
+        gap: 20px;
+        align-items: baseline;
+        padding: 10px 0
+    }
+}
 </style>

@@ -50,13 +50,14 @@ label:has(input[type="radio"]) {
   transition: .2s
 }
 
-button:hover,
-label:has(input[type="radio"]:checked) {
+label:has(input[type="radio"]:checked),
+button.active {
   color: #ffffff;
   background: #21c78a;
 }
 
-label:has(input[type="radio"]:not(:checked)):hover {
+label:has(input[type="radio"]:not(:checked)):hover,
+button:not(.active):hover {
   background: #b9ffe5;
 }
 
@@ -87,5 +88,15 @@ textarea {
 
 h1 {
   margin-top: 0
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+li {
+  display: flex;
 }
 </style>

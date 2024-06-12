@@ -33,6 +33,10 @@ const crumbsFull: T_Crumb[] = [
     margin: 0;
 }
 
+.crumbs-list {
+    flex-wrap: wrap;
+}
+
 .flex.crumbs-list li a {
     transition: .2s;
     text-decoration: underline;

@@ -62,4 +62,10 @@ footer {
 .footer-logo-wrap {
     width: 80px;
 }
+
+@media (max-width: 900px) {
+    .footer-body {
+        flex-direction: column;
+    }
+}
 </style>

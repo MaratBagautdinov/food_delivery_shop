@@ -5,16 +5,17 @@ const props = defineProps<{ orderItem: T_Order_Item, order_status: T_Order['stat
 const url = `/api/product/${props.orderItem.product_id}/${props.orderItem.variant_id}`
 
 const { data: product } = await useLazyFetch<T_Product & { variant: T_ProductVariant, Catalog: T_Catalog }>(url)
+const linkProduct = computed(() => product.value ? `/catalog/${product.value?.Catalog?.slug}/${product.value?.slug}?variant=${product.value?.variant.id}` : '/')
 </script>
 
 <template>
     <div class="product-item product-item--list" v-if="product">
-        <NuxtLink :to="`/catalog/${product?.Catalog?.slug}/${product.slug}`" class="product-img"
-            :style="{ backgroundImage: `url(${!!product.variants[0].photo ? product.variants[0].photo : '/entities/products/default.png'})` }">
+        <NuxtLink :to="linkProduct" class="product-img"
+            :style="{ backgroundImage: `url(${!!product.variant.photo ? product.variant.photo : '/entities/products/default.png'})` }">
         </NuxtLink>
         <h3 class="product-name">
-            <NuxtLink :to="`/catalog/${product?.Catalog?.slug}/${product.slug}`">{{ product.name }}: {{
-                product.variant?.name }}</NuxtLink>
+            <NuxtLink :to="linkProduct">{{ product.name }}: <span>{{
+                product.variant?.name }}</span> </NuxtLink>
             <div class="price">{{ product.variant.price }} руб</div>
         </h3>
         <!-- <EntitiesProductCartActions v-if="product.variant.id && order_status == 0" :variant="product.variant"
@@ -36,6 +37,10 @@ const { data: product } = await useLazyFetch<T_Product & { variant: T_ProductVar
 
 .product-item--list h3 {
     margin: 0;
+}
+
+.product-item--list h3 span {
+    font-weight: 400;
 }
 
 .product-img {

@@ -72,4 +72,10 @@ const variant = computed(() => {
     font-size: 16px;
     line-height: 1.2;
 }
+
+@media (max-width: 800px) {
+    .product-wrap {
+        grid-template-columns: 1fr
+    }
+}
 </style>

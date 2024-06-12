@@ -11,14 +11,8 @@ const variantsChecked = computed(() => {
 </script>
 
 <template>
-
     <div class="variant-list">
-        <NuxtLink class='variant-item' v-for="variant in variantsChecked"
-            :to="{ path: `/catalog/${product.Catalog.slug}/${product.slug}`, query: { variant: variant.id } }">
-            <button>{{
-                variant.name }} {{
-                    variant.price }} руб</button>
-        </NuxtLink>
+        <EntitiesProductVariantListItem v-for="variant in variantsChecked" :variant :product />
     </div>
 </template>
 <style>
